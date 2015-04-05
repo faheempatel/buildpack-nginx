@@ -10,6 +10,13 @@ events {
 http {
   types_hash_max_size 2048;
   include mime.types;
+
+  gzip on;
+  gzip_proxied any;
+  gzip_types text/plain text/xml text/css application/x-javascript text/javascript application/xml+rss;
+  gzip_vary on;
+  gzip_disable "MSIE [1-6]\.(?!.*SV1)";
+
   server {
     listen <%= ENV["PORT"] %>;
     server_name  _;
